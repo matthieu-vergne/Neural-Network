@@ -5,28 +5,28 @@ import java.util.Set;
 
 import org.neuralnetwork.synapse.AbstractSynapse;
 
-public abstract class AbstractNeuron<Value> {
-	private Value value;
-	private Set<AbstractSynapse<?, ?>> inputs = new HashSet<AbstractSynapse<?, ?>>();
+public abstract class AbstractNeuron<ValueType, SynapseType extends AbstractSynapse<?, ?>> {
+	private ValueType value;
+	private Set<SynapseType> inputs = new HashSet<SynapseType>();
 
-	public AbstractNeuron(Value initialValue) {
+	public AbstractNeuron(ValueType initialValue) {
 		value = initialValue;
 	}
 
-	public Value getValue() {
+	public ValueType getValue() {
 		return value;
 	}
 
-	public void addSynapse(AbstractSynapse<?, ?> synapse) {
+	public void addSynapse(SynapseType synapse) {
 		inputs.add(synapse);
 	}
 
-	public void removeSynapse(AbstractSynapse<?, ?> synapse) {
+	public void removeSynapse(SynapseType synapse) {
 		inputs.remove(synapse);
 	}
 
-	abstract protected Value computeValueFromInputs(
-			Set<AbstractSynapse<?, ?>> inputs);
+	abstract protected ValueType computeValueFromInputs(
+			Set<SynapseType> inputs);
 
 	public void computeValue() {
 		value = computeValueFromInputs(inputs);

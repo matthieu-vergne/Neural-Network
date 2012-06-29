@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.Set;
 
 import org.junit.Test;
-import org.neuralnetwork.neuron.AbstractNeuron;
 import org.neuralnetwork.synapse.AbstractSynapse;
 
 public class AbstractNeuronTest {
@@ -13,11 +12,12 @@ public class AbstractNeuronTest {
 	@Test
 	public void testInitialValue() {
 		int init = 0;
-		AbstractNeuron<Integer> neuron = new AbstractNeuron<Integer>(init) {
+		AbstractNeuron<Integer, AbstractSynapse<?, ?>> neuron = new AbstractNeuron<Integer, AbstractSynapse<?, ?>>(
+				init) {
 			@Override
 			protected Integer computeValueFromInputs(
 					Set<AbstractSynapse<?, ?>> inputs) {
-				return 1;
+				return -1;
 			}
 		};
 		assertEquals(init, neuron.getValue().intValue());
@@ -25,7 +25,8 @@ public class AbstractNeuronTest {
 
 	@Test
 	public void testComputeValue() {
-		AbstractNeuron<Integer> neuron = new AbstractNeuron<Integer>(0) {
+		AbstractNeuron<Integer, AbstractSynapse<?, ?>> neuron = new AbstractNeuron<Integer, AbstractSynapse<?, ?>>(
+				0) {
 			@Override
 			protected Integer computeValueFromInputs(
 					Set<AbstractSynapse<?, ?>> inputs) {
@@ -41,7 +42,7 @@ public class AbstractNeuronTest {
 
 	@Test
 	public void testAddRemoveSynapse() {
-		AbstractNeuron<Set<AbstractSynapse<?, ?>>> neuron = new AbstractNeuron<Set<AbstractSynapse<?, ?>>>(
+		AbstractNeuron<Set<AbstractSynapse<?, ?>>, AbstractSynapse<?, ?>> neuron = new AbstractNeuron<Set<AbstractSynapse<?, ?>>, AbstractSynapse<?, ?>>(
 				null) {
 			@Override
 			protected Set<AbstractSynapse<?, ?>> computeValueFromInputs(
@@ -54,7 +55,7 @@ public class AbstractNeuronTest {
 		SynapseTest synapse1 = new SynapseTest(0);
 		SynapseTest synapse2 = new SynapseTest(1);
 		SynapseTest synapse3 = new SynapseTest(2);
-		
+
 		{
 			Set<AbstractSynapse<?, ?>> synapses = neuron.getValue();
 			assertEquals(0, synapses.size());
@@ -62,7 +63,7 @@ public class AbstractNeuronTest {
 			assertFalse(synapses.contains(synapse2));
 			assertFalse(synapses.contains(synapse3));
 		}
-		
+
 		neuron.addSynapse(synapse1);
 		{
 			Set<AbstractSynapse<?, ?>> synapses = neuron.getValue();
@@ -71,7 +72,7 @@ public class AbstractNeuronTest {
 			assertFalse(synapses.contains(synapse2));
 			assertFalse(synapses.contains(synapse3));
 		}
-		
+
 		// check no double add
 		neuron.addSynapse(synapse1);
 		{
@@ -81,7 +82,7 @@ public class AbstractNeuronTest {
 			assertFalse(synapses.contains(synapse2));
 			assertFalse(synapses.contains(synapse3));
 		}
-		
+
 		neuron.addSynapse(synapse2);
 		{
 			Set<AbstractSynapse<?, ?>> synapses = neuron.getValue();
@@ -90,7 +91,7 @@ public class AbstractNeuronTest {
 			assertTrue(synapses.contains(synapse2));
 			assertFalse(synapses.contains(synapse3));
 		}
-		
+
 		neuron.addSynapse(synapse3);
 		{
 			Set<AbstractSynapse<?, ?>> synapses = neuron.getValue();
@@ -99,7 +100,7 @@ public class AbstractNeuronTest {
 			assertTrue(synapses.contains(synapse2));
 			assertTrue(synapses.contains(synapse3));
 		}
-		
+
 		neuron.removeSynapse(synapse2);
 		{
 			Set<AbstractSynapse<?, ?>> synapses = neuron.getValue();
@@ -108,7 +109,7 @@ public class AbstractNeuronTest {
 			assertFalse(synapses.contains(synapse2));
 			assertTrue(synapses.contains(synapse3));
 		}
-		
+
 		// check no double remove
 		neuron.removeSynapse(synapse2);
 		{
@@ -118,7 +119,7 @@ public class AbstractNeuronTest {
 			assertFalse(synapses.contains(synapse2));
 			assertTrue(synapses.contains(synapse3));
 		}
-		
+
 		neuron.removeSynapse(synapse1);
 		{
 			Set<AbstractSynapse<?, ?>> synapses = neuron.getValue();
@@ -127,7 +128,7 @@ public class AbstractNeuronTest {
 			assertFalse(synapses.contains(synapse2));
 			assertTrue(synapses.contains(synapse3));
 		}
-		
+
 		neuron.removeSynapse(synapse3);
 		{
 			Set<AbstractSynapse<?, ?>> synapses = neuron.getValue();

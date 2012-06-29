@@ -6,18 +6,17 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.neuralnetwork.neuron.AbstractNeuron;
-import org.neuralnetwork.synapse.AbstractSynapse;
-import org.neuralnetwork.synapse.NeuronSynapse;
 
 public class NeuronSynapseTest {
 
 	@Test
 	public void test() {
-		AbstractNeuron<Integer> inputNeuron = new AbstractNeuron<Integer>(0) {
+		AbstractNeuron<Integer, NeuronSynapse<Integer>> inputNeuron = new AbstractNeuron<Integer, NeuronSynapse<Integer>>(
+				0) {
 			@Override
 			protected Integer computeValueFromInputs(
-					Set<AbstractSynapse<?, ?>> inputs) {
-				return getValue()+1;
+					Set<NeuronSynapse<Integer>> inputs) {
+				return getValue() + 1;
 			}
 		};
 		NeuronSynapse<Integer> synapse = new NeuronSynapse<Integer>(inputNeuron);
