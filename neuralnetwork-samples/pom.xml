@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>neuralnetwork-parent</artifactId>
+		<groupId>org.neuralnetwork</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>neuralnetwork-samples</artifactId>
+	<name>Neural Network</name>
+	<description>Neural network engine.</description>
+	<inceptionYear>2012</inceptionYear>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/matthieu-vergne/Neural-Network/issues/</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>BSD</name>
+			<url>http://www.freebsd.org/copyright/license.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Matthieu Vergne</name>
+			<email>matthieu_DOT_vergne@(nospam)gmail_DOT_com</email>
+			<url>https://github.com/matthieu-vergne</url>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/matthieu-vergne/Neural-Network.git
+		</connection>
+		<developerConnection>scm:git:git@github.com:${github.username}/Neural-Network.git
+		</developerConnection>
+		<url>https://github.com/matthieu-vergne/Neural-Network</url>
+	</scm>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.neuralnetwork</groupId>
+			<artifactId>neuralnetwork-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>
