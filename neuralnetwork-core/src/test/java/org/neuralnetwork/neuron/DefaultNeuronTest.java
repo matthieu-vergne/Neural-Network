@@ -6,14 +6,14 @@ import org.junit.Test;
 import org.neuralnetwork.functions.AbstractActivationFunction;
 import org.neuralnetwork.functions.HeavisideFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
-import org.neuralnetwork.synapse.AbstractWeightProductSynapse;
+import org.neuralnetwork.synapse.AbstractWeightedSynapse;
 
 public class DefaultNeuronTest {
 
 	@Test
 	public void testBiasSynapse() {
 		DefaultNeuron neuron = new DefaultNeuron(0.0);
-		AbstractWeightProductSynapse<Double> biasSynapse = neuron
+		AbstractWeightedSynapse<Double> biasSynapse = neuron
 				.getBiasSynapse();
 		assertEquals(0, biasSynapse.getWeight(), 0);
 		biasSynapse.setWeight(1.0);
@@ -52,7 +52,7 @@ public class DefaultNeuronTest {
 			}
 		});
 		InputTest input = new InputTest();
-		neuron.addSynapse(new AbstractWeightProductSynapse<InputTest>(input,
+		neuron.addSynapse(new AbstractWeightedSynapse<InputTest>(input,
 				2.0) {
 			@Override
 			protected Double getValueFromInput(InputTest input) {

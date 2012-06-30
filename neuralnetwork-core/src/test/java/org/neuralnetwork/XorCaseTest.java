@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.neuralnetwork.functions.HeavisideFunction;
 import org.neuralnetwork.neuron.AbstractNeuron;
 import org.neuralnetwork.neuron.DefaultNeuron;
-import org.neuralnetwork.synapse.AbstractWeightProductSynapse;
+import org.neuralnetwork.synapse.AbstractWeightedSynapse;
 
 public class XorCaseTest {
 
@@ -79,7 +79,7 @@ public class XorCaseTest {
 		}
 	}
 
-	class InputSynapse extends AbstractWeightProductSynapse<Input> {
+	class InputSynapse extends AbstractWeightedSynapse<Input> {
 
 		public InputSynapse(Input input, Double initialWeight) {
 			super(input, initialWeight);
@@ -93,7 +93,7 @@ public class XorCaseTest {
 	}
 
 	class XorNeuronSynapse extends
-			AbstractWeightProductSynapse<AbstractNeuron<Double, ?>> {
+			AbstractWeightedSynapse<AbstractNeuron<Double, ?>> {
 
 		public XorNeuronSynapse(AbstractNeuron<Double, ?> input,
 				Double initialWeight) {

@@ -1,8 +1,8 @@
 package org.neuralnetwork.sample.booleanfunction;
 
-import org.neuralnetwork.synapse.AbstractWeightProductSynapse;
+import org.neuralnetwork.synapse.AbstractWeightedSynapse;
 
-public class InputSynapse extends AbstractWeightProductSynapse<Input> {
+public class InputSynapse extends AbstractWeightedSynapse<Input> {
 
 	public InputSynapse(Input input, Double initialWeight) {
 		super(input, initialWeight);

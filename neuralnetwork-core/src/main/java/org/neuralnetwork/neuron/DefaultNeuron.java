@@ -5,13 +5,12 @@ import java.util.Set;
 import org.neuralnetwork.functions.AbstractActivationFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
 import org.neuralnetwork.synapse.AbstractSynapse;
-import org.neuralnetwork.synapse.AbstractWeightProductSynapse;
 import org.neuralnetwork.synapse.AbstractWeightedSynapse;
 
 public class DefaultNeuron extends
-		AbstractNeuron<Double, AbstractWeightedSynapse<?, Double, Double>> {
+		AbstractNeuron<Double, AbstractWeightedSynapse<?>> {
 
-	private final AbstractWeightProductSynapse<Double> biasSynapse = new AbstractWeightProductSynapse<Double>(
+	private final AbstractWeightedSynapse<Double> biasSynapse = new AbstractWeightedSynapse<Double>(
 			-1.0, 0.0) {
 		@Override
 		protected Double getValueFromInput(Double input) {
@@ -27,7 +26,7 @@ public class DefaultNeuron extends
 
 	@Override
 	protected Double computeValueFromInputs(
-			Set<AbstractWeightedSynapse<?, Double, Double>> inputs) {
+			Set<AbstractWeightedSynapse<?>> inputs) {
 		Double value = 0.0;
 		for (AbstractSynapse<?, Double> synapse : inputs) {
 			value += synapse.getValue();
@@ -35,7 +34,7 @@ public class DefaultNeuron extends
 		return activationFunction.compute(value);
 	}
 
-	public AbstractWeightProductSynapse<Double> getBiasSynapse() {
+	public AbstractWeightedSynapse<Double> getBiasSynapse() {
 		return biasSynapse;
 	}
 
