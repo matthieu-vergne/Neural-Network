@@ -1,5 +1,5 @@
 package org.neuralnetwork.functions;
 
-public abstract class AbstractActivationFunction<InputType, OutputType> {
-	public abstract OutputType compute(InputType input);
+public abstract class AbstractActivationFunction<Input, Output> {
+	public abstract Output compute(Input input);
 }

@@ -5,31 +5,31 @@ import java.util.Set;
 
 import org.neuralnetwork.synapse.ISynapse;
 
-public abstract class AbstractNeuron<ValueType, SynapseType extends ISynapse<?, ?>>
-		implements INeuron<ValueType, SynapseType> {
-	private ValueType value;
-	private final Set<SynapseType> synapses = new HashSet<SynapseType>();
+public abstract class AbstractNeuron<Value, Synapse extends ISynapse<?, ?>>
+		implements INeuron<Value, Synapse> {
+	private Value value;
+	private final Set<Synapse> synapses = new HashSet<Synapse>();
 
-	public AbstractNeuron(ValueType initialValue) {
+	public AbstractNeuron(Value initialValue) {
 		value = initialValue;
 	}
 
 	@Override
-	public ValueType getValue() {
+	public Value getValue() {
 		return value;
 	}
 
 	@Override
-	public void addSynapse(SynapseType synapse) {
+	public void addSynapse(Synapse synapse) {
 		synapses.add(synapse);
 	}
 
 	@Override
-	public void removeSynapse(SynapseType synapse) {
+	public void removeSynapse(Synapse synapse) {
 		synapses.remove(synapse);
 	}
 
-	abstract protected ValueType computeValueFromInputs(Set<SynapseType> inputs);
+	abstract protected Value computeValueFromInputs(Set<Synapse> inputs);
 
 	@Override
 	public void computeValue() {
@@ -37,7 +37,7 @@ public abstract class AbstractNeuron<ValueType, SynapseType extends ISynapse<?, 
 	}
 
 	@Override
-	public Set<SynapseType> getSynapses() {
+	public Set<Synapse> getSynapses() {
 		return synapses;
 	}
 

@@ -1,9 +1,9 @@
 package org.neuralnetwork.synapse;
 
-public interface ISynapse<InputType, ValueType> {
+public interface ISynapse<Input, Value> {
 
-	public InputType getInput();
+	public Input getInput();
 
-	public ValueType getValue();
+	public Value getValue();
 
 }

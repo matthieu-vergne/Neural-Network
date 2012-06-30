@@ -1,10 +1,10 @@
 package org.neuralnetwork.synapse;
 
-public abstract class AbstractWeightedSynapse<InputType> extends
-		AbstractSynapse<InputType, Double> {
+public abstract class AbstractWeightedSynapse<Input> extends
+		AbstractSynapse<Input, Double> {
 	private Double weight;
 
-	public AbstractWeightedSynapse(InputType input, Double initialWeight) {
+	public AbstractWeightedSynapse(Input input, Double initialWeight) {
 		super(input);
 		setWeight(initialWeight);
 	}
@@ -17,11 +17,11 @@ public abstract class AbstractWeightedSynapse<InputType> extends
 		this.weight = weight;
 	}
 
-	protected Double readValueFrom(InputType input) {
+	protected Double readValueFrom(Input input) {
 		return getValueFromInput(input) * weight;
 	};
 
-	abstract protected Double getValueFromInput(InputType input);
+	abstract protected Double getValueFromInput(Input input);
 
 	@Override
 	public String toString() {

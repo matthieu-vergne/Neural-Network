@@ -4,15 +4,15 @@ import java.util.Set;
 
 import org.neuralnetwork.synapse.ISynapse;
 
-public interface INeuron<ValueType, SynapseType extends ISynapse<?, ?>> {
-	public void addSynapse(SynapseType synapse);
+public interface INeuron<Value, Synapse extends ISynapse<?, ?>> {
+	public void addSynapse(Synapse synapse);
 
-	public void removeSynapse(SynapseType synapse);
+	public void removeSynapse(Synapse synapse);
 
-	public Set<SynapseType> getSynapses();
+	public Set<Synapse> getSynapses();
 
 	public void computeValue();
 
-	public ValueType getValue();
+	public Value getValue();
 
 }

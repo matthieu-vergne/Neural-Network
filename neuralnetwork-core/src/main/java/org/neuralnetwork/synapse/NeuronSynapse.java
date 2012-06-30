@@ -2,14 +2,14 @@ package org.neuralnetwork.synapse;
 
 import org.neuralnetwork.neuron.AbstractNeuron;
 
-public class NeuronSynapse<ValueType> extends AbstractSynapse<AbstractNeuron<ValueType, ?>, ValueType> {
+public class NeuronSynapse<Value> extends AbstractSynapse<AbstractNeuron<Value, ?>, Value> {
 
-	public NeuronSynapse(AbstractNeuron<ValueType, ?> input) {
+	public NeuronSynapse(AbstractNeuron<Value, ?> input) {
 		super(input);
 	}
 
 	@Override
-	protected ValueType readValueFrom(AbstractNeuron<ValueType, ?> input) {
+	protected Value readValueFrom(AbstractNeuron<Value, ?> input) {
 		return input.getValue();
 	}
 }
