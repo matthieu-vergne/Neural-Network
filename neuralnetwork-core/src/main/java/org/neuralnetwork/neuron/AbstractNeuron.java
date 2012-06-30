@@ -7,7 +7,7 @@ import org.neuralnetwork.synapse.AbstractSynapse;
 
 public abstract class AbstractNeuron<ValueType, SynapseType extends AbstractSynapse<?, ?>> {
 	private ValueType value;
-	private final Set<SynapseType> inputs = new HashSet<SynapseType>();
+	private final Set<SynapseType> synapses = new HashSet<SynapseType>();
 
 	public AbstractNeuron(ValueType initialValue) {
 		value = initialValue;
@@ -18,17 +18,17 @@ public abstract class AbstractNeuron<ValueType, SynapseType extends AbstractSyna
 	}
 
 	public void addSynapse(SynapseType synapse) {
-		inputs.add(synapse);
+		synapses.add(synapse);
 	}
 
 	public void removeSynapse(SynapseType synapse) {
-		inputs.remove(synapse);
+		synapses.remove(synapse);
 	}
 
 	abstract protected ValueType computeValueFromInputs(
 			Set<SynapseType> inputs);
 
 	public void computeValue() {
-		value = computeValueFromInputs(inputs);
+		value = computeValueFromInputs(synapses);
 	}
 }
