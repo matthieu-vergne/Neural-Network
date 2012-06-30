@@ -31,4 +31,8 @@ public abstract class AbstractNeuron<ValueType, SynapseType extends AbstractSyna
 	public void computeValue() {
 		value = computeValueFromInputs(synapses);
 	}
+
+	public Set<SynapseType> getSynapses() {
+		return synapses;
+	}
 }
