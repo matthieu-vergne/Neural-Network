@@ -7,7 +7,6 @@ import org.neuralnetwork.functions.AbstractActivationFunction;
 import org.neuralnetwork.functions.HeavisideFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
 import org.neuralnetwork.synapse.AbstractWeightProductSynapse;
-import org.neuralnetwork.synapse.AbstractWeightedSynapse;
 
 public class DefaultNeuronTest {
 
@@ -44,33 +43,7 @@ public class DefaultNeuronTest {
 	}
 
 	@Test
-	public void testHeavisideActivationFunctionValue() {
-		DefaultNeuron neuron = new DefaultNeuron(0.0);
-		neuron.setActivationFunction(new HeavisideFunction());
-		InputTest input = new InputTest();
-		neuron.addSynapse(new AbstractWeightedSynapse<InputTest, Double, Double>(
-				input, 1.0) {
-			@Override
-			protected Double readValueFrom(InputTest input, Double weight) {
-				return input.value;
-			}
-		});
-
-		input.value = 0;
-		neuron.computeValue();
-		assertEquals(1, neuron.getValue(), 0);
-
-		input.value = -1;
-		neuron.computeValue();
-		assertEquals(0, neuron.getValue(), 0);
-
-		input.value = +1;
-		neuron.computeValue();
-		assertEquals(1, neuron.getValue(), 0);
-	}
-
-	@Test
-	public void testSigmoidActivationFunctionValue() {
+	public void testActivationFunctionValue() {
 		DefaultNeuron neuron = new DefaultNeuron(0.0);
 		neuron.setActivationFunction(new AbstractActivationFunction<Double, Double>() {
 			@Override
@@ -79,7 +52,8 @@ public class DefaultNeuronTest {
 			}
 		});
 		InputTest input = new InputTest();
-		neuron.addSynapse(new AbstractWeightProductSynapse<InputTest>(input, 2.0) {
+		neuron.addSynapse(new AbstractWeightProductSynapse<InputTest>(input,
+				2.0) {
 			@Override
 			protected Double getValueFromInput(InputTest input) {
 				return input.value;
