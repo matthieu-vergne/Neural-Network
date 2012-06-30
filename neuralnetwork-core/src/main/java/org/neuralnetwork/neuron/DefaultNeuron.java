@@ -5,8 +5,8 @@ import java.util.Set;
 import org.neuralnetwork.functions.AbstractActivationFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
 import org.neuralnetwork.synapse.AbstractSynapse;
-import org.neuralnetwork.synapse.AbstractWeightedSynapse;
 import org.neuralnetwork.synapse.AbstractWeightProductSynapse;
+import org.neuralnetwork.synapse.AbstractWeightedSynapse;
 
 public class DefaultNeuron extends
 		AbstractNeuron<Double, AbstractWeightedSynapse<?, Double, Double>> {
@@ -43,8 +43,8 @@ public class DefaultNeuron extends
 		return activationFunction;
 	}
 
-	public void setActivationFunction(AbstractActivationFunction<Double, Double> activationFunction) {
+	public void setActivationFunction(
+			AbstractActivationFunction<Double, Double> activationFunction) {
 		this.activationFunction = activationFunction;
 	}
-
 }
