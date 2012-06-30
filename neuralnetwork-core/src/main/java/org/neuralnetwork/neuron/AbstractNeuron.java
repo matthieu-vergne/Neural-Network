@@ -35,4 +35,9 @@ public abstract class AbstractNeuron<ValueType, SynapseType extends AbstractSyna
 	public Set<SynapseType> getSynapses() {
 		return synapses;
 	}
+	
+	@Override
+	public String toString() {
+		return synapses.toArray().toString();
+	}
 }

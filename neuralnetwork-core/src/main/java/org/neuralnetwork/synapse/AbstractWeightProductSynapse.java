@@ -13,4 +13,9 @@ public abstract class AbstractWeightProductSynapse<InputType> extends
 	}
 
 	abstract protected Double getValueFromInput(InputType input);
+
+	@Override
+	public String toString() {
+		return "(" + getInput() + "*" + getWeight() + ")";
+	}
 }

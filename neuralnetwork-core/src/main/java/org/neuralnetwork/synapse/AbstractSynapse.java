@@ -13,6 +13,11 @@ public abstract class AbstractSynapse<InputType, ValueType> {
 		return readValueFrom(input);
 	}
 
+	@Override
+	public String toString() {
+		return "" + getValue();
+	}
+
 	public InputType getInput() {
 		return input;
 	}
