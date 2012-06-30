@@ -22,7 +22,7 @@ public class DefaultNeuron extends
 
 	public DefaultNeuron(Double initialValue) {
 		super(initialValue);
-		addSynapse(getBiasSynapse());
+		addSynapse(biasSynapse);
 	}
 
 	@Override
@@ -35,10 +35,6 @@ public class DefaultNeuron extends
 		return activationFunction.compute(value);
 	}
 
-	public AbstractWeightProductSynapse<Double> getBiasSynapse() {
-		return biasSynapse;
-	}
-
 	public AbstractActivationFunction<Double, Double> getActivationFunction() {
 		return activationFunction;
 	}
@@ -46,5 +42,17 @@ public class DefaultNeuron extends
 	public void setActivationFunction(
 			AbstractActivationFunction<Double, Double> activationFunction) {
 		this.activationFunction = activationFunction;
+	}
+
+	public void setThreshold(double threshold) {
+		biasSynapse.setWeight(threshold);
+	}
+
+	public double getThreshold() {
+		return biasSynapse.getWeight();
+	}
+
+	public boolean isActive() {
+		return getValue() >= getThreshold();
 	}
 }
