@@ -12,4 +12,8 @@ public abstract class AbstractSynapse<InputType, ValueType> {
 	public ValueType getValue() {
 		return readValueFrom(input);
 	}
+
+	public InputType getInput() {
+		return input;
+	}
 }
