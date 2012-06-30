@@ -7,7 +7,7 @@ import org.neuralnetwork.synapse.AbstractSynapse;
 
 public abstract class AbstractNeuron<ValueType, SynapseType extends AbstractSynapse<?, ?>> {
 	private ValueType value;
-	private Set<SynapseType> inputs = new HashSet<SynapseType>();
+	private final Set<SynapseType> inputs = new HashSet<SynapseType>();
 
 	public AbstractNeuron(ValueType initialValue) {
 		value = initialValue;
