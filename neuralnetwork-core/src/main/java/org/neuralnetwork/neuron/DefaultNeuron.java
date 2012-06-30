@@ -2,7 +2,7 @@ package org.neuralnetwork.neuron;
 
 import java.util.Set;
 
-import org.neuralnetwork.functions.AbstractActivationFunction;
+import org.neuralnetwork.functions.IActivationFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
 import org.neuralnetwork.synapse.AbstractSynapse;
 import org.neuralnetwork.synapse.AbstractWeightedSynapse;
@@ -17,7 +17,7 @@ public class DefaultNeuron extends
 			return input;
 		}
 	};
-	private AbstractActivationFunction<Double, Double> activationFunction = new SigmoidFunction();
+	private IActivationFunction<Double, Double> activationFunction = new SigmoidFunction();
 
 	public DefaultNeuron(Double initialValue) {
 		super(initialValue);
@@ -38,12 +38,12 @@ public class DefaultNeuron extends
 		return biasSynapse;
 	}
 
-	public AbstractActivationFunction<Double, Double> getActivationFunction() {
+	public IActivationFunction<Double, Double> getActivationFunction() {
 		return activationFunction;
 	}
 
 	public void setActivationFunction(
-			AbstractActivationFunction<Double, Double> activationFunction) {
+			IActivationFunction<Double, Double> activationFunction) {
 		this.activationFunction = activationFunction;
 	}
 }

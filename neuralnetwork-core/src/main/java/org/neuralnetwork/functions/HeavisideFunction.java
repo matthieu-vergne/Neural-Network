@@ -1,7 +1,7 @@
 package org.neuralnetwork.functions;
 
-public class HeavisideFunction extends
-		AbstractActivationFunction<Double, Double> {
+public class HeavisideFunction implements
+		IActivationFunction<Double, Double> {
 
 	private final double threshold;
 

@@ -3,7 +3,7 @@ package org.neuralnetwork.neuron;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.neuralnetwork.functions.AbstractActivationFunction;
+import org.neuralnetwork.functions.IActivationFunction;
 import org.neuralnetwork.functions.HeavisideFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
 import org.neuralnetwork.synapse.AbstractWeightedSynapse;
@@ -23,7 +23,7 @@ public class DefaultNeuronTest {
 	@Test
 	public void testSetGetActivationFunction() {
 		DefaultNeuron neuron = new DefaultNeuron(0.0);
-		AbstractActivationFunction<Double, Double> function = neuron
+		IActivationFunction<Double, Double> function = neuron
 				.getActivationFunction();
 		assertTrue(function instanceof SigmoidFunction);
 		assertEquals(1, ((SigmoidFunction) function).getLambda(), 0);
@@ -32,7 +32,7 @@ public class DefaultNeuronTest {
 		neuron.setActivationFunction(function);
 		assertEquals(function, neuron.getActivationFunction());
 
-		function = new AbstractActivationFunction<Double, Double>() {
+		function = new IActivationFunction<Double, Double>() {
 			@Override
 			public Double compute(Double input) {
 				return input;
@@ -45,7 +45,7 @@ public class DefaultNeuronTest {
 	@Test
 	public void testActivationFunctionValue() {
 		DefaultNeuron neuron = new DefaultNeuron(0.0);
-		neuron.setActivationFunction(new AbstractActivationFunction<Double, Double>() {
+		neuron.setActivationFunction(new IActivationFunction<Double, Double>() {
 			@Override
 			public Double compute(Double input) {
 				return input > 1.0 && input < 2.0 ? 1.0 : 0.0;

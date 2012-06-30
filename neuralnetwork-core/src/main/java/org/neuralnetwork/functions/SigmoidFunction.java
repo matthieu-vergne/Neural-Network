@@ -1,6 +1,6 @@
 package org.neuralnetwork.functions;
 
-public class SigmoidFunction extends AbstractActivationFunction<Double, Double> {
+public class SigmoidFunction implements IActivationFunction<Double, Double> {
 	private final double lambda;
 
 	public SigmoidFunction() {
