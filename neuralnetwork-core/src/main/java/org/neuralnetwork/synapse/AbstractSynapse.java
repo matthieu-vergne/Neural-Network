@@ -1,6 +1,7 @@
 package org.neuralnetwork.synapse;
 
-public abstract class AbstractSynapse<InputType, ValueType> {
+public abstract class AbstractSynapse<InputType, ValueType> implements
+		ISynapse<InputType, ValueType> {
 	private final InputType input;
 
 	public AbstractSynapse(InputType input) {
@@ -9,6 +10,7 @@ public abstract class AbstractSynapse<InputType, ValueType> {
 
 	abstract protected ValueType readValueFrom(InputType input);
 
+	@Override
 	public ValueType getValue() {
 		return readValueFrom(input);
 	}
@@ -18,6 +20,7 @@ public abstract class AbstractSynapse<InputType, ValueType> {
 		return "" + getValue();
 	}
 
+	@Override
 	public InputType getInput() {
 		return input;
 	}
