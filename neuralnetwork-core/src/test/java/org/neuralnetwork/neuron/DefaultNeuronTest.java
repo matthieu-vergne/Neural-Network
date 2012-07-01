@@ -3,22 +3,13 @@ package org.neuralnetwork.neuron;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.neuralnetwork.functions.IActivationFunction;
 import org.neuralnetwork.functions.HeavisideFunction;
+import org.neuralnetwork.functions.IActivationFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
-import org.neuralnetwork.synapse.AbstractWeightedSynapse;
+import org.neuralnetwork.synapse.SynapseFactory;
+import org.neuralnetwork.util.InputReader;
 
 public class DefaultNeuronTest {
-
-	@Test
-	public void testBiasSynapse() {
-		DefaultNeuron neuron = new DefaultNeuron(0.0);
-		AbstractWeightedSynapse<Double> biasSynapse = neuron
-				.getBiasSynapse();
-		assertEquals(0, biasSynapse.getWeight(), 0);
-		biasSynapse.setWeight(1.0);
-		assertEquals(-1, biasSynapse.getValue(), 0);
-	}
 
 	@Test
 	public void testSetGetActivationFunction() {
@@ -52,13 +43,8 @@ public class DefaultNeuronTest {
 			}
 		});
 		InputTest input = new InputTest();
-		neuron.addSynapse(new AbstractWeightedSynapse<InputTest>(input,
-				2.0) {
-			@Override
-			protected Double getValueFromInput(InputTest input) {
-				return input.value;
-			}
-		});
+		neuron.addSynapse(SynapseFactory.produceWeightedSynapse(input, 2.0,
+				InputTest.reader));
 
 		input.value = -50;
 		neuron.computeValue();
@@ -89,7 +75,13 @@ public class DefaultNeuronTest {
 		assertEquals(0, neuron.getValue(), 0);
 	}
 
-	class InputTest {
+	static class InputTest {
 		double value = 0;
+		static InputReader<InputTest, Double> reader = new InputReader<InputTest, Double>() {
+			@Override
+			public Double readInput(InputTest input) {
+				return input.value;
+			}
+		};
 	}
 }

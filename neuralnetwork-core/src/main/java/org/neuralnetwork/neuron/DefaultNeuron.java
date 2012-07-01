@@ -4,38 +4,36 @@ import java.util.Set;
 
 import org.neuralnetwork.functions.IActivationFunction;
 import org.neuralnetwork.functions.SigmoidFunction;
-import org.neuralnetwork.synapse.AbstractSynapse;
-import org.neuralnetwork.synapse.AbstractWeightedSynapse;
+import org.neuralnetwork.synapse.ISynapse;
+import org.neuralnetwork.synapse.SynapseFactory;
+import org.neuralnetwork.util.DirectValueReader;
 
-public class DefaultNeuron extends
-		AbstractNeuron<Double, AbstractWeightedSynapse<?>> {
+public class DefaultNeuron extends AbstractNeuron<Double, ISynapse<?, Double>> {
 
-	private final AbstractWeightedSynapse<Double> biasSynapse = new AbstractWeightedSynapse<Double>(
-			-1.0, 0.0) {
-		@Override
-		protected Double getValueFromInput(Double input) {
-			return input;
-		}
-	};
+	private ISynapse<Double, Double> biasSynapse;
 	private IActivationFunction<Double, Double> activationFunction = new SigmoidFunction();
 
 	public DefaultNeuron(Double initialValue) {
 		super(initialValue);
-		addSynapse(getBiasSynapse());
+		setBiasSynapseWeight(0.0);
 	}
 
 	@Override
-	protected Double computeValueFromInputs(
-			Set<AbstractWeightedSynapse<?>> inputs) {
+	protected Double computeValueFromInputs(Set<ISynapse<?, Double>> inputs) {
 		Double value = 0.0;
-		for (AbstractSynapse<?, Double> synapse : inputs) {
+		for (ISynapse<?, Double> synapse : inputs) {
 			value += synapse.getValue();
 		}
 		return activationFunction.compute(value);
 	}
 
-	public AbstractWeightedSynapse<Double> getBiasSynapse() {
-		return biasSynapse;
+	public void setBiasSynapseWeight(Double weight) {
+		if (biasSynapse != null) {
+			removeSynapse(biasSynapse);
+		}
+		biasSynapse = SynapseFactory.produceWeightedSynapse(-1.0, weight,
+				new DirectValueReader<Double>());
+		addSynapse(biasSynapse);
 	}
 
 	public IActivationFunction<Double, Double> getActivationFunction() {

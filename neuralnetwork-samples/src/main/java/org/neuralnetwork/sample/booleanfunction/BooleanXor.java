@@ -13,14 +13,14 @@ public class BooleanXor {
 		neuron1.setActivationFunction(new HeavisideFunction());
 		neuron1.addSynapse(new InputSynapse(input1, 0.6));
 		neuron1.addSynapse(new InputSynapse(input2, 0.6));
-		neuron1.getBiasSynapse().setWeight(1.0);
+		neuron1.setBiasSynapseWeight(1.0);
 
 		DefaultNeuron neuron2 = new DefaultNeuron(0.0);
 		neuron2.setActivationFunction(new HeavisideFunction());
 		neuron2.addSynapse(new InputSynapse(input1, 1.0));
 		neuron2.addSynapse(new InputSynapse(input2, 1.0));
 		neuron2.addSynapse(new XorNeuronSynapse(neuron1, -2.0));
-		neuron2.getBiasSynapse().setWeight(1.0);
+		neuron2.setBiasSynapseWeight(1.0);
 
 		for (boolean b : new Boolean[] { false, true }) {
 			for (boolean a : new Boolean[] { false, true }) {

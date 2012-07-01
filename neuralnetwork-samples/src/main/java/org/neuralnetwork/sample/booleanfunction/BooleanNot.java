@@ -9,7 +9,7 @@ public class BooleanNot {
 
 		DefaultNeuron neuron = new DefaultNeuron(0.0);
 		neuron.addSynapse(new InputSynapse(input, -1.0));
-		neuron.getBiasSynapse().setWeight(0.0);
+		neuron.setBiasSynapseWeight(0.0);
 
 		for (boolean a : new Boolean[] { false, true }) {
 			input.value = a;

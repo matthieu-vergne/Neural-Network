@@ -11,7 +11,7 @@ public class BooleanOr {
 		DefaultNeuron neuron = new DefaultNeuron(0.0);
 		neuron.addSynapse(new InputSynapse(input1, 1.0));
 		neuron.addSynapse(new InputSynapse(input2, 1.0));
-		neuron.getBiasSynapse().setWeight(0.5);
+		neuron.setBiasSynapseWeight(0.5);
 
 		for (boolean b : new Boolean[] { false, true }) {
 			for (boolean a : new Boolean[] { false, true }) {
