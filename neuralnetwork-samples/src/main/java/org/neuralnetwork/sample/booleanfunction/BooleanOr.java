@@ -1,6 +1,7 @@
 package org.neuralnetwork.sample.booleanfunction;
 
 import org.neuralnetwork.neuron.DefaultNeuron;
+import org.neuralnetwork.synapse.SynapseFactory;
 
 public class BooleanOr {
 
@@ -9,8 +10,10 @@ public class BooleanOr {
 		Input input2 = new Input();
 
 		DefaultNeuron neuron = new DefaultNeuron(0.0);
-		neuron.addSynapse(new InputSynapse(input1, 1.0));
-		neuron.addSynapse(new InputSynapse(input2, 1.0));
+		neuron.addSynapse(SynapseFactory.produceWeightedSynapse(input1, 1.0,
+				Input.reader));
+		neuron.addSynapse(SynapseFactory.produceWeightedSynapse(input2, 1.0,
+				Input.reader));
 		neuron.setBiasSynapseWeight(0.5);
 
 		for (boolean b : new Boolean[] { false, true }) {
